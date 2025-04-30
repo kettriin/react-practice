@@ -1,0 +1,12 @@
+body {
+  color: wheat;
+  background-color: #333;
+}
+
+.h1-style{
+  color: white
+}
+
+.card{
+  display: inline-block;
+}
