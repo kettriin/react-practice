@@ -1,17 +1,21 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import HeaderItem from "./components/HeaderItem";
 import ContentItem from "./components/ContentItem";
 import FooterItem from "./components/FooterItem";
+import axios from "axios"; 
+
+const gettingPosts = "https://jsonplaceholder.typicode.com/posts";
 
 const HomePage = () => {
     const myName = "Карточки с картинками"
-    const lables = [
-        {id: 1, cardTitle: "Карточка 1", cardText: "Текст карточки 1"},
-        {id: 2, cardTitle: "Карточка 2", cardText: "Текст карточки 2"},
-        {id: 3, cardTitle: "Карточка 3", cardText: "Текст карточки 3"},
-        {id: 4, cardTitle: "Карточка 4", cardText: "Текст карточки 4"},
-        {id: 5, cardTitle: "Карточка 5", cardText: "Текст карточки 5"},
-    ]
+    const [lables, setLables] = useState([]);
+
+    useEffect(()=> {
+        axios.get(gettingPosts)
+        .then(res => {
+            setLables(res.data.slice(0, 5));
+        });
+    });
 
     return (
         <div className='container col-10'>
